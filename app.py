@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 
 import extract_gbp
 import extract_usd
@@ -9,29 +9,17 @@ import extract_eur
 unique_visitors = set()
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
-@app.route('/')
-def back_home():
-
-    # Get the visitor's IP address
-    ip_address = request.remote_addr
-
-    # Check if the IP address is not in the set
-    if ip_address not in unique_visitors:
-        unique_visitors.add(ip_address)
-
-    # Retrieve total visitor count
-    total_visitors = len(unique_visitors)
-
-    return render_template('index.html', total_visitors=total_visitors)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+
     if request.method == 'POST':
         basic_salary = request.form['basic_salary']
-        allowances = request.form['total_allowances']
-        deductions = request.form['total_deductions']
-        currency = request.form['pegged_currency']
+        allowances = request.form['allowances']
+        deductions = request.form['deductions']
+        currency = request.form['currency']
 
         if not basic_salary:
             basic_salary = 0
@@ -52,6 +40,10 @@ def home():
         deductions = int(deductions)
         currency = str(currency)
 
+        session['basic_salary'] = basic_salary
+        session['allowances'] = allowances
+        session['deductions'] = deductions
+        session['currency'] = currency
 
         # Calculating & Formatting annual_salary
 
@@ -189,9 +181,29 @@ def home():
         # Retrieve total visitor count
         total_visitors = len(unique_visitors)
 
-        return render_template('output.html', net_salary=net_salary, income_tax=income_tax, epf_8_amount=epf_8_amount, epf_etf_amount=epf_etf_amount, total_visitors=total_visitors)
+        return render_template('output.html', 
+                               net_salary=net_salary, 
+                               income_tax=income_tax, 
+                               epf_8_amount=epf_8_amount, 
+                               epf_etf_amount=epf_etf_amount, 
+                               total_visitors=total_visitors)
+    
+    # Get the visitor's IP address
+    ip_address = request.remote_addr
 
-    return render_template('index.html', total_visitors=total_visitors)
+    # Check if the IP address is not in the set
+    if ip_address not in unique_visitors:
+        unique_visitors.add(ip_address)
+
+    # Retrieve total visitor count
+    total_visitors = len(unique_visitors)
+
+    return render_template('index.html', 
+                           total_visitors=total_visitors,
+                           basic_salary=session.get('basic_salary'),
+                           allowances=session.get('allowances'),
+                           deductions=session.get('deductions'),
+                           currency=session.get('currency'))
 
 
 if __name__ == '__main__':

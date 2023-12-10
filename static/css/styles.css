@@ -20,14 +20,18 @@
     background-color: #242424!important;
 }
 
-/* .text-centre{
+.text-centre{
     text-align: center!important;
-} */
+}
 
-input:-webkit-autofill,
+.btn-width{
+    width: 100%!important;
+}
+
+/* input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     box-shadow: 0 0 0 30px var(--scroll-bar-color-1) inset !important;
     -webkit-text-fill-color: white;
-}
+} */

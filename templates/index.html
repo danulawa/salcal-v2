@@ -32,7 +32,7 @@
           <form class="mb-3" method="POST" action="{{ url_for('home') }}">
               
             <div class="form-floating mb-3">
-              <select class="form-select form-control bg-dark text-white" id="pegged-currency" name="pegged_currency" placeholder=" " aria-describedby="basic-addon3">
+              <select class="form-select form-control bg-dark text-white" id="pegged-currency" name="currency" placeholder=" " aria-describedby="basic-addon3">
                 <option value="LKR" {{ 'selected' if request.form['pegged_currency'] == 'LKR' }}>LKR</option>
                 <option value="USD" {{ 'selected' if request.form['pegged_currency'] == 'USD' }}>USD</option>
                 <option value="GBP" {{ 'selected' if request.form['pegged_currency'] == 'GBP' }}>GBP</option>
@@ -43,21 +43,21 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="basic-salary" name="basic_salary" aria-describedby="basic-addon3" placeholder=" " value="{{request.form['basic_salary'] }}" />
+              <input type="number" class="form-control bg-dark text-white" id="basic-salary" name="basic_salary" aria-describedby="basic-addon3" placeholder=" " value="{{ basic_salary }}" />
               <label for="basic-salary">Enter Your Basic Salary</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="total-allowances" name="total_allowances" aria-describedby="basic-addon3" placeholder=" " value="{{ request.form['total_allowances'] }}">
+              <input type="number" class="form-control bg-dark text-white" id="total-allowances" name="allowances" aria-describedby="basic-addon3" placeholder=" " value="{{ total_allowances }}">
               <label for="total-allowances">Enter Total Allowances (Optional)</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="total-deductions" name="total_deductions" aria-describedby="basic-addon3" placeholder=" " value="{{ request.form['total_deductions'] }}">
+              <input type="number" class="form-control bg-dark text-white" id="total-deductions" name="deductions" aria-describedby="basic-addon3" placeholder=" " value="{{ total_deductions }}">
               <label for="total-deductions">Enter Total Deductions (Optional)</label>
             </div>
 
-            <button type="submit" class="btn btn-primary col-md-6 offset-md-3">Calculate</button>
+            <button type="submit" class="btn btn-primary text-center btn-width">Calculate</button>
 
           </form>
 
