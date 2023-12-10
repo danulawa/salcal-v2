@@ -27,41 +27,54 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 mb-3 mt-3">
           
-          <h1 class="mb-3">Salary Calculator</h1>
+          <h1 class="mb-3 text-center">Salary Results</h1>
+
+          {% if epf_8_amount %}
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-dark text-white span-style">Monthly 8% EPF Share</span>
+            <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="monthly-epfetf" name="monthly_epfetf" aria-describedby="basic-addon3" value="{{ epf_8_amount }}">
+          </div>
+          {% endif %}
 
           {% if epf_etf_amount %}
-          <div class="form-floating mb-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-dark text-white span-style">Monthly 20% EPF & 3% ETF Payment</span>
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="monthly-epfetf" name="monthly_epfetf" aria-describedby="basic-addon3" value="{{ epf_etf_amount }}">
-            <label for="monthly-epfetf">Monthly EPF ETF Amount</label>
           </div>
           {% endif %}
 
           {% if income_tax %}
-          <div class="form-floating mb-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-dark text-white span-style">Monthly Tax Payment</span>
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="income-tax" name="income_tax" aria-describedby="basic-addon3" value="{{ income_tax }}">
-            <label for="income-tax">Monthly Income Tax Payment</label>
           </div>
           {% endif %}
 
           {% if net_salary %}
-          <div class="form-floating mb-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-dark text-white span-style">Monthly Net Salary</span>
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="net-salary" name="net_salary" aria-describedby="basic-addon3" value="{{ net_salary }}">
-            <label for="net-salary">Monthly Net Salary</label>
           </div>
           {% endif %}
           
           <form class="mb-3" action="{{ url_for('back_home') }}">
         
-            <button type="submit" class="btn btn-primary">Re Calculate</button>
+            <button type="submit" class="btn btn-primary col-md-6 offset-md-3">Re-Calculate</button>
 
           </form>
 
-          <p>
+          <p class = 'text-center mb-5'>
             Visit 
             <a href="https://github.com/danulawa/salcal-v2" target="_blank">
-              GitHub Repo</a> 
-            for this Calculator Tool
+              GitHub Repo</a>
           </p>
+
+          {% if total_visitors %}
+          <div class="input-group">
+            <span class="input-group-text bg-dark text-white span-style">Total Visitors</span>
+            <input disabled type="text" class="form-control bg-dark bg-green text-white" id="total-visitors" name="total_visitors" aria-describedby="basic-addon3" value="{{ total_visitors }}">
+          </div>
+          {% endif %}
 
         </div>
       </div>
