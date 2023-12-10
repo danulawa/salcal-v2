@@ -7,6 +7,10 @@ import extract_eur
 
 app = Flask(__name__)
 
+@app.route('/')
+def back_home():
+    return render_template('index.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -142,20 +146,33 @@ def home():
             income_tax = (500000 / 12) * 0.06 + (500000 / 12) * 0.12 + (500000 / 12) * 0.18 + (500000 / 12) * 0.24 + (
                         500000 / 12) * 0.30 + ((converted_annual - 3700000) / 12) * 0.36
 
+        ##Calculating EPF/ETF Deductions
+        ################################################################
+
+        epf_etf_amount = (converted_basic * 8 / 100)
 
         ##Calculating Final Net Salary
         ################################################################
 
-        net_salary = (converted_basic * 92 / 100 + converted_allowances - income_tax) - converted_deductions
+        net_salary = (converted_basic + converted_allowances - income_tax - epf_etf_amount) - converted_deductions
 
 
         ##Formatting final outputs and return values
         ################################################################
 
         net_salary = round(net_salary,2)
-        income_tax= round(income_tax,2)
+        income_tax = round(income_tax,2)
+        epf_etf_amount = round(epf_etf_amount,2)
 
-        return render_template('index.html', net_salary=net_salary, income_tax=income_tax)
+        net_salary = str(net_salary)
+        income_tax = str(income_tax)
+        epf_etf_amount = str(epf_etf_amount)
+
+        net_salary = 'LKR ' + net_salary
+        income_tax = 'LKR ' + income_tax
+        epf_etf_amount = 'LKR ' + epf_etf_amount
+
+        return render_template('output.html', net_salary=net_salary, income_tax=income_tax, epf_etf_amount=epf_etf_amount)
 
     return render_template('index.html')
 

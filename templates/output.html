@@ -50,35 +50,9 @@
           </div>
           {% endif %}
           
-          <form class="mb-3" method="POST" action="{{ url_for('home') }}">
-
-            <div class="form-floating mb-3">
-              <select class="form-select form-control bg-dark text-white" id="pegged-currency" name="pegged_currency" aria-describedby="basic-addon3">
-                <option value="LKR" {{ 'selected' if request.form['pegged_currency'] == 'LKR' }}>LKR</option>
-                <option value="USD" {{ 'selected' if request.form['pegged_currency'] == 'USD' }}>USD</option>
-                <option value="GBP" {{ 'selected' if request.form['pegged_currency'] == 'GBP' }}>GBP</option>
-                <option value="AUD" {{ 'selected' if request.form['pegged_currency'] == 'AUD' }}>AUD</option>
-                <option value="EUR" {{ 'selected' if request.form['pegged_currency'] == 'EUR' }}>EUR</option>
-              </select>
-              <label for="pegged-currency">Choose a currency</label>
-            </div>
-
-            <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="basic-salary" name="basic_salary" aria-describedby="basic-addon3" value="{{request.form['basic_salary'] }}">
-              <label for="basic-salary">Enter Your Basic Salary</label>
-            </div>
-
-            <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="total-allowances" name="total_allowances" aria-describedby="basic-addon3" value="{{ request.form['total_allowances'] }}">
-              <label for="total-allowances">Enter Total Allowances (Optional)</label>
-            </div>
-
-            <div class="form-floating mb-3">
-              <input type="number" class="form-control bg-dark text-white" id="total-deductions" name="total_deductions" aria-describedby="basic-addon3" value="{{ request.form['total_deductions'] }}">
-              <label for="total-deductions">Enter Total Deductions (Optional)</label>
-            </div>
+          <form class="mb-3" action="{{ url_for('back_home') }}">
         
-            <button type="submit" class="btn btn-primary">Calculate</button>
+            <button type="submit" class="btn btn-primary">Re Calculate</button>
 
           </form>
 

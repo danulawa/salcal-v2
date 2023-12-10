@@ -1,71 +1,19 @@
-/* Base styles from Tailwind */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css');
-
-/* Additional styles */
-body {
-background-color: #1F2937;
-color: #FFFFFF;
-font-family: 'Work Sans', sans-serif;
+.body-style{
+    font-family: 'Inter', sans-serif;
 }
 
-.container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+.bg-dark{
+    background-color: #141414!important;
 }
 
-.top-space{
-    margin-top: 2.5rem;
+.bg-blue{
+    background-color: #001530!important;
 }
 
-.form-group {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-bottom: 1rem;
-}
-
-label {
-margin-bottom: 0.5rem;
-}
-
-.form-control {
-padding: 0.5rem;
-border-radius: 0.25rem;
-border: none;
-background-color: #374151;
-color: #f9fafb;
-width: 100%;
-font-size: 1rem;
-font-weight: 500;
-}
-
-.btn-calculate {
-padding: 0.5rem 1rem;
-margin-top: 1rem;
-border-radius: 0.25rem;
-border: none;
-background-color: #60A5FA;
-color: #f9fafb;
-font-size: 1rem;
-font-weight: 600;
-transition: background-color 0.2s ease;
-}
-
-.btn-calculate:hover {
-background-color: #3B82F6;
-cursor: pointer;
-}
-
-.text-xl {
-font-size: 10rem;
-}
-
-.output-space {
-margin-top: 2rem;
-}
-
-.output-space-2 {
-    margin-top: 1rem;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px var(--scroll-bar-color-1) inset !important;
+    -webkit-text-fill-color: white;
 }
