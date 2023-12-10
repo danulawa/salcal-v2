@@ -57,20 +57,38 @@
           </div>
           {% endif %}
           
-          <form class="mb-3" action="{{ url_for('home') }}">
+          <form class="mb-5" action="{{ url_for('home') }}">
             <button type="submit" class="btn btn-primary text-center btn-width">Re-Calculate</button>
           </form>
 
-          <!-- <p class = 'text-center mb-5'>
-            Visit <a href="https://github.com/danulawa/salcal-v2" target="_blank"> GitHub Repo</a>
-          </p>
+          <div class="row mt-3">
 
-          {% if total_visitors %}
-          <div class="form-floating">
-            <input disabled type="text" class="form-control bg-dark bg-green text-white" id="total-visitors" name="total_visitors" aria-describedby="basic-addon3" value="{{ total_visitors }}">
-            <label for="total-visitors"><centre>Total Visitors</centre></label>
+            <div class="col">
+
+              <div class="card custom-card bg-dark text-white text-center white-border">
+                <div class="card-body">
+                  <h5 class="card-title">Visit Repo</h5>
+                  <p class="card-text">
+                    <a  href="https://github.com/danulawa/salcal-v2" class="github-link" target="_blank"> 
+                    <i class="fa-brands fa-github icon-size"></i> Click Here</a>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col">
+
+              <div class="card custom-card bg-dark text-white text-center white-border">
+                <div class="card-body">
+                  <h5 class="card-title">Total Users</h5>
+                  <p class="card-text"><i class="fa-solid fa-users icon-size"></i> {{ total_visitors }}</p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
-          {% endif %} -->
 
         </div>
       </div>

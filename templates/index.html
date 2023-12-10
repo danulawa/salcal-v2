@@ -19,6 +19,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome  -->
+    <script src="https://kit.fontawesome.com/128408ba4a.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body class="bg-dark text-white body-style">
@@ -29,15 +32,15 @@
           
           <h1 class="mb-3 text-center">Salary Calculator</h1>
           
-          <form class="mb-3" method="POST" action="{{ url_for('home') }}">
+          <form class="mb-5" method="POST" action="{{ url_for('home') }}">
               
             <div class="form-floating mb-3">
               <select class="form-select form-control bg-dark text-white" id="pegged-currency" name="currency" placeholder=" " aria-describedby="basic-addon3">
-                <option value="LKR" {{ 'selected' if request.form['pegged_currency'] == 'LKR' }}>LKR</option>
-                <option value="USD" {{ 'selected' if request.form['pegged_currency'] == 'USD' }}>USD</option>
-                <option value="GBP" {{ 'selected' if request.form['pegged_currency'] == 'GBP' }}>GBP</option>
-                <option value="AUD" {{ 'selected' if request.form['pegged_currency'] == 'AUD' }}>AUD</option>
-                <option value="EUR" {{ 'selected' if request.form['pegged_currency'] == 'EUR' }}>EUR</option>
+                <option value="LKR" {% if currency == 'LKR' %} selected {% endif %}>LKR</option>
+                <option value="USD" {% if currency == 'USD' %} selected {% endif %}>USD</option>
+                <option value="GBP" {% if currency == 'GBP' %} selected {% endif %}>GBP</option>
+                <option value="AUD" {% if currency == 'AUD' %} selected {% endif %}>AUD</option>
+                <option value="EUR" {% if currency == 'EUR' %} selected {% endif %}>EUR</option>
               </select>
               <label for="pegged-currency">Enter Currency</label>
             </div>
@@ -61,16 +64,34 @@
 
           </form>
 
-          <!-- <p class = 'text-center mb-5'>
-            Visit <a href="https://github.com/danulawa/salcal-v2" target="_blank"> GitHub Repo</a>
-          </p>
+          <div class="row mt-3">
 
-          {% if total_visitors %}
-          <div class="form-floating">
-            <input disabled type="text" class="form-control bg-dark bg-green text-white" id="total-visitors" name="total_visitors" aria-describedby="basic-addon3" value="{{ total_visitors }}">
-            <label for="total-visitors"><centre>Total Visitors</centre></label>
+            <div class="col">
+
+              <div class="card custom-card bg-dark text-white text-center white-border">
+                <div class="card-body">
+                  <h5 class="card-title">Visit Repo</h5>
+                  <p class="card-text">
+                    <a  href="https://github.com/danulawa/salcal-v2" class="github-link" target="_blank"> 
+                    <i class="fa-brands fa-github icon-size"></i> Click Here</a>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col">
+
+              <div class="card custom-card bg-dark text-white text-center white-border">
+                <div class="card-body">
+                  <h5 class="card-title">Total Users</h5>
+                  <p class="card-text"><i class="fa-solid fa-users icon-size"></i> {{ total_visitors }}</p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
-          {% endif %} -->
 
         </div>
       </div>

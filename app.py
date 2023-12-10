@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, session
+import os
+from datetime import timedelta, datetime, timezone
 
 import extract_gbp
 import extract_usd
@@ -10,10 +12,14 @@ unique_visitors = set()
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+app.permanent_session_lifetime = timedelta(seconds=30)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+
+    now = datetime.now()
+    session['last_activity'] = now
 
     if request.method == 'POST':
         basic_salary = request.form['basic_salary']
@@ -188,6 +194,15 @@ def home():
                                epf_etf_amount=epf_etf_amount, 
                                total_visitors=total_visitors)
     
+    # Check session timeout
+    now = datetime.now()
+    
+    if 'last_activity' in session and (now - session['last_activity']).seconds > app.permanent_session_lifetime.seconds:
+        session.clear()
+
+    # Update last activity time
+    session['last_activity'] = now.replace(tzinfo=timezone.utc)
+
     # Get the visitor's IP address
     ip_address = request.remote_addr
 
