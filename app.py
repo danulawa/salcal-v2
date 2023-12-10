@@ -15,6 +15,10 @@ app.secret_key = 'your_secret_key'
 app.permanent_session_lifetime = timedelta(seconds=30)
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
 
