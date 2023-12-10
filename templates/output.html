@@ -30,51 +30,47 @@
           <h1 class="mb-3 text-center">Salary Results</h1>
 
           {% if epf_8_amount %}
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-dark text-white span-style">Monthly 8% EPF Share</span>
-            <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="monthly-epfetf" name="monthly_epfetf" aria-describedby="basic-addon3" value="{{ epf_8_amount }}">
+          <div class="form-floating mb-3">
+            <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="epf-eight" name="epf_eight" aria-describedby="basic-addon3" value="{{ epf_8_amount }}">
+            <label for="epf-eight">EPF 8% Share</label>
           </div>
           {% endif %}
 
           {% if epf_etf_amount %}
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-dark text-white span-style">Monthly 20% EPF & 3% ETF Payment</span>
+          <div class="form-floating mb-3">
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="monthly-epfetf" name="monthly_epfetf" aria-describedby="basic-addon3" value="{{ epf_etf_amount }}">
+            <label for="monthly-epfetf">Monthly 20% EPF & 3% ETF Payment</label>
           </div>
           {% endif %}
 
           {% if income_tax %}
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-dark text-white span-style">Monthly Tax Payment</span>
+          <div class="form-floating mb-3">
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="income-tax" name="income_tax" aria-describedby="basic-addon3" value="{{ income_tax }}">
+            <label for="income-tax">Monthly Tax Payment</label>
           </div>
           {% endif %}
 
           {% if net_salary %}
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-dark text-white span-style">Monthly Net Salary</span>
+          <div class="form-floating mb-3">
             <input disabled type="text" class="form-control bg-dark bg-blue text-white" id="net-salary" name="net_salary" aria-describedby="basic-addon3" value="{{ net_salary }}">
+            <label for="net-salary">Monthly Net Salary</label>
           </div>
           {% endif %}
           
           <form class="mb-3" action="{{ url_for('back_home') }}">
-        
             <button type="submit" class="btn btn-primary col-md-6 offset-md-3">Re-Calculate</button>
-
           </form>
 
-          <p class = 'text-center mb-5'>
-            Visit 
-            <a href="https://github.com/danulawa/salcal-v2" target="_blank">
-              GitHub Repo</a>
+          <!-- <p class = 'text-center mb-5'>
+            Visit <a href="https://github.com/danulawa/salcal-v2" target="_blank"> GitHub Repo</a>
           </p>
 
           {% if total_visitors %}
-          <div class="input-group">
-            <span class="input-group-text bg-dark text-white span-style">Total Visitors</span>
+          <div class="form-floating">
             <input disabled type="text" class="form-control bg-dark bg-green text-white" id="total-visitors" name="total_visitors" aria-describedby="basic-addon3" value="{{ total_visitors }}">
+            <label for="total-visitors"><centre>Total Visitors</centre></label>
           </div>
-          {% endif %}
+          {% endif %} -->
 
         </div>
       </div>

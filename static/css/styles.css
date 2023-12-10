@@ -15,14 +15,14 @@
 }
 
 .span-style{
-    width: 300px;
+    width: 50%;
     font-size: 0.95rem;
     background-color: #242424!important;
 }
 
-.text-centre{
+/* .text-centre{
     text-align: center!important;
-}
+} */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
