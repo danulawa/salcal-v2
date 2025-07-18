@@ -1,0 +1,93 @@
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+<script>
+  document.getElementById('pegged-currency').addEventListener('change', function () {
+    const rateInput = document.getElementById('exchange-rate');
+    if (this.value === 'CUSTOM') {
+      rateInput.removeAttribute('readonly');
+    } else {
+      rateInput.setAttribute('readonly', true);
+    }
+  });
+</script>
+
+<script id="exchange-rates-json" type="application/json">
+  {{ {
+    'USD': usd_rate,
+    'EUR': eur_rate,
+    'GBP': gbp_rate,
+    'AUD': aud_rate,
+    'LKR': lkr_rate
+  } | tojson }}
+</script>
+
+<script>
+  const exchangeRates = JSON.parse(document.getElementById('exchange-rates-json').textContent);
+
+  // BASIC
+  const basicCurrencyDropdown = document.getElementById('basic-pegged-currency');
+  const basicExchangeRateInput = document.getElementById('basic-exchange-rate');
+
+  basicCurrencyDropdown.addEventListener('change', function () {
+    const selected = this.value;
+    if (selected === 'CUSTOM') {
+      basicExchangeRateInput.removeAttribute('readonly');
+      basicExchangeRateInput.value = '';
+    } else {
+      basicExchangeRateInput.setAttribute('readonly', true);
+      basicExchangeRateInput.value = exchangeRates[selected] || '';
+    }
+  });
+
+  // DEDUCTIONS
+  const deductionsCurrencyDropdown = document.getElementById('deductions-pegged-currency');
+  const deductionsExchangeRateInput = document.getElementById('deductions-exchange-rate');
+
+  deductionsCurrencyDropdown.addEventListener('change', function () {
+    const selected = this.value;
+    if (selected === 'CUSTOM') {
+      deductionsExchangeRateInput.removeAttribute('readonly');
+      deductionsExchangeRateInput.value = '';
+    } else {
+      deductionsExchangeRateInput.setAttribute('readonly', true);
+      deductionsExchangeRateInput.value = exchangeRates[selected] || '';
+    }
+  });
+
+  // ALLOWANCES
+  const allowancesCurrencyDropdown = document.getElementById('allowances-pegged-currency');
+  const allowancesExchangeRateInput = document.getElementById('allowances-exchange-rate');
+
+  allowancesCurrencyDropdown.addEventListener('change', function () {
+    const selected = this.value;
+    if (selected === 'CUSTOM') {
+      allowancesExchangeRateInput.removeAttribute('readonly');
+      allowancesExchangeRateInput.value = '';
+    } else {
+      allowancesExchangeRateInput.setAttribute('readonly', true);
+      allowancesExchangeRateInput.value = exchangeRates[selected] || '';
+    }
+  });
+
+  // Set default values on initial page load
+  document.addEventListener('DOMContentLoaded', function () {
+    const setInitialRate = (currencyDropdown, rateInput) => {
+      const selected = currencyDropdown.value;
+      if (selected !== 'CUSTOM') {
+        rateInput.setAttribute('readonly', true);
+        rateInput.value = exchangeRates[selected] || 1;
+      } else {
+        rateInput.removeAttribute('readonly');
+      }
+    };
+
+    setInitialRate(basicCurrencyDropdown, basicExchangeRateInput);
+    setInitialRate(deductionsCurrencyDropdown, deductionsExchangeRateInput);
+    setInitialRate(allowancesCurrencyDropdown, allowancesExchangeRateInput);
+  });
+</script>
+
+
+
