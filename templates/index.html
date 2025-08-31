@@ -10,14 +10,17 @@
         <div class="col-md-6 offset-md-3 mb-3 mt-3">
           
           <h1 class="mb-3 text-center">Salary Calculator</h1>
+          <br> 
           
           <form class="mb-5" method="POST" action="{{ url_for('home') }}">
 
+            
             <div class="row g-2 align-items-center mb-2">
               <!-- Currency Dropdown -->
+              <h5 class="mb-3">Basic Salary</h5>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select bg-dark text-white" id="basic-pegged-currency" name="basic_currency">
+                  <select class="form-select bg-dark bg-blue text-white" id="basic-pegged-currency" name="basic_currency">
                     <option value="LKR" {% if basic_currency == 'LKR' %} selected {% endif %}>LKR</option>
                     <option value="USD" {% if basic_currency == 'USD' %} selected {% endif %}>USD</option>
                     <option value="GBP" {% if basic_currency == 'GBP' %} selected {% endif %}>GBP</option>
@@ -32,7 +35,7 @@
               <!-- Exchange Rate -->
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="basic-exchange-rate" name="basic_exchange_rate"
+                  <input type="number" step="0.01" class="form-control bg-dark bg-blue text-white" id="basic-exchange-rate" name="basic_exchange_rate"
                         value="{{ basic_exchange_rate }}" {% if basic_currency != 'CUSTOM' %} readonly {% endif %}>
                   <label for="basic-exchange-rate">Rate</label>
                 </div>
@@ -43,18 +46,20 @@
             <div class="row g-2 align-items-center mb-4">
               <div class="col-md-12">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="basic-salary" name="basic_salary" aria-describedby="basic-addon3" placeholder=" "
+                  <input type="number" step="0.01" class="form-control bg-dark bg-blue text-white" id="basic-salary" name="basic_salary" aria-describedby="basic-addon3" placeholder=" "
                         value="{{ basic_salary }}">
                   <label for="basic-salary">Basic Salary</label>
                 </div>
               </div>
             </div>
 
+            
             <div class="row g-2 align-items-center mb-2">
               <!-- Currency Dropdown -->
+              <h5 class="mb-3">Total Allowances</h5>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select bg-dark text-white" id="allowances-pegged-currency" name="allowances_currency">
+                  <select class="form-select bg-dark bg-green text-white" id="allowances-pegged-currency" name="allowances_currency">
                     <option value="LKR" {% if currency == 'LKR' %} selected {% endif %}>LKR</option>
                     <option value="USD" {% if currency == 'USD' %} selected {% endif %}>USD</option>
                     <option value="GBP" {% if currency == 'GBP' %} selected {% endif %}>GBP</option>
@@ -69,7 +74,7 @@
               <!-- Exchange Rate -->
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="allowances-exchange-rate" name="allowances_exchange_rate"
+                  <input type="number" step="0.01" class="form-control bg-dark bg-green text-white" id="allowances-exchange-rate" name="allowances_exchange_rate"
                         value="{{ exchange_rate }}" {% if currency != 'CUSTOM' %} readonly {% endif %}>
                   <label for="exchange-rate">Rate</label>
                 </div>
@@ -80,19 +85,20 @@
             <div class="row g-2 align-items-center mb-4">
               <div class="col-md-12">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="total-allowances" name="allowances" aria-describedby="basic-addon3" placeholder=" " 
+                  <input type="number" step="0.01" class="form-control bg-dark bg-green text-white" id="total-allowances" name="allowances" aria-describedby="basic-addon3" placeholder=" " 
                         value="{{ allowances }}">
                   <label for="total-allowances">Total Allowances (Optional)</label>
                 </div>
               </div>
             </div>
 
-
+            
             <div class="row g-2 align-items-center mb-2">
               <!-- Currency Dropdown -->
+              <h5 class="mb-3">Total Deductions</h5>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select bg-dark text-white" id="deductions-pegged-currency" name="deductions_currency">
+                  <select class="form-select bg-dark bg-red text-white" id="deductions-pegged-currency" name="deductions_currency">
                     <option value="LKR" {% if currency == 'LKR' %} selected {% endif %}>LKR</option>
                     <option value="USD" {% if currency == 'USD' %} selected {% endif %}>USD</option>
                     <option value="GBP" {% if currency == 'GBP' %} selected {% endif %}>GBP</option>
@@ -107,7 +113,7 @@
               <!-- Exchange Rate -->
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="deductions-exchange-rate" name="deductions_exchange_rate"
+                  <input type="number" step="0.01" class="form-control bg-dark bg-red text-white" id="deductions-exchange-rate" name="deductions_exchange_rate"
                         value="{{ exchange_rate }}" {% if currency != 'CUSTOM' %} readonly {% endif %}>
                   <label for="exchange-rate">Rate</label>
                 </div>
@@ -118,7 +124,7 @@
             <div class="row g-2 align-items-center mb-4">
               <div class="col-md-12">
                 <div class="form-floating">
-                  <input type="number" step="0.01" class="form-control bg-dark text-white" id="total-deductions" name="deductions" aria-describedby="basic-addon3" placeholder=" " 
+                  <input type="number" step="0.01" class="form-control bg-dark bg-red text-white" id="total-deductions" name="deductions" aria-describedby="basic-addon3" placeholder=" " 
                         value="{{ deductions }}">
                   <label for="total-deductions">Total Deductions (Optional)</label>
                 </div>
